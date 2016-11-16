@@ -16,11 +16,5 @@ docker-compose up -d jenkins
 #docker-compose build node1
 #docker-compose up -d node1
 
-if [ "$(uname)" == "Linux" ]; then
-    sleep 5
-    echo "workspace : ${workspace}"
-    echo 'Jsr92372603!2' | sudo -S chown -R $(whoami):$(whoami) ${workspace}/hsbc/
-fi
-
 
 docker-compose ps

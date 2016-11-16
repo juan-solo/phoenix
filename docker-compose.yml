@@ -9,7 +9,7 @@ jenkins:
   privileged: true
   volumes:
     # Just specify a path and let the Engine create a volume
-    - /Users/juan/workspace/jenkins_scripts:/opt/millicominfra:rw
+    #- /Users/juan/workspace/jenkins_scripts:/opt/millicominfra:rw
 
 rundeck:
   build: rundeck
@@ -24,18 +24,6 @@ rundeck:
   #links:
   #        - node1
 
-rundeck2:
-  build: rundeck2
-  hostname:  rundeck2
-  container_name:    rundeck2
-  ports:
-    - "4440:4440"
-  environment:
-    SERVER_URL: http://localhost:4440
-  tty: true
-  privileged: true
-  #links:
-  #        - node1
 
 ubuntu:
   build: ubuntu
@@ -45,23 +33,3 @@ ubuntu:
   privileged: true
 
 
-puppetmaster2:
-    build:    docker-puppetmaster2/
-    hostname:    puppetmaster2
-    container_name:    puppetmaster2
-    ports:
-      - "8140:8140"
-    volumes:
-        # Just specify a path and let the Engine create a volume
-      - ../ssh-keys:/root/.ssh/authorized_keys.d:rw
-      - ../manifests:/etc/puppet/environments/production/manifests/:rw
-      - ../modules:/etc/puppet/environments/production/modules/:rw
-      - ../hieradata:/etc/puppet/environments/production/hieradata:rw
-node1:
-    build:    node1
-    hostname:    node1.tigocloud.net
-    container_name:     node1
-    links:
-        - puppetmaster2:puppetmaster2
-#    volumes:
-#    - /Users/juan/workspace/puppet-vpc/phoenix/node1/localscripts:/tmp/:rw
