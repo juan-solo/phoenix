@@ -8,6 +8,10 @@ workspace="/home/juan.solorzano/workspace"
 
 docker-compose build jenkins
 docker-compose up -d jenkins
+
+docker-compose build ubuntu
+docker-compose up -d ubuntu
+
 #docker-compose build rundeck
 #docker-compose up -d rundeck
 

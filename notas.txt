@@ -1,0 +1,22 @@
+docker commit -m "first version" -a "Juan Solorzano" 895ce19e49e6 hsbc/jenkins:v1.0
+
+
+
+docker logs --tail 10 --follow jenkins
+
+#docker rmi $(docker images -a | awk '{print $3}')
+
+(jenkins_url)/safeRestart
+(jenkins_url)/restart
+(jenkins_url)/safeExit
+(jenkins_url)/reload
+
+
+
+# docker run -p 8080:8080 --env JAVA_OPTS="-Dhudson.Main.development=true -Djenkins.install.runSetupWizard=false" jenkinsci/jenkins:2.0-beta-1
+
+#docker run -it -e http_proxy=http://proxy.corp.globant.com:3128/ godfather/jenkins:v1.0 -p 8080:8080
+
+
+JENKINS_HOST=juanbak:juanjsr@localhost:8080
+curl -sSL "http://$JENKINS_HOST/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/'
